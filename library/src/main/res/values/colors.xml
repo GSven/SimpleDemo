@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!--透明色-->
+    <color name="colorTransparent">#00000000</color>
+    <!--白色-->
+    <color name="white">#ffffff</color>
+
+
+    <!--黑色-->
+    <color name="black9">#2E2E2E</color>
+
+
+    <!--toast-->
+    <color name="errorColor">#D50000</color>
+    <color name="infoColor">#3F51B5</color>
+    <color name="successColor">#388E3C</color>
+    <color name="warningColor">#FFA900</color>
+    <color name="normalColor">#353A3E</color>
+
+
+</resources>

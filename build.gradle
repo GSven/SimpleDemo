@@ -1,14 +1,14 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0'
-        
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -25,3 +25,55 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+// 全局gradle变量定义。
+ext {
+    android = [
+            compileSdkVersion       : 28,
+            buildToolsVersion       : "28.0.3",
+            minSdkVersion           : 19,
+            targetSdkVersion        : 28,
+            versionCode             : 1,
+            versionName             : "1.0.0",    //必须是int或者float，否则影响线上升级
+
+    ]
+
+    version = [
+            gsonVersion                     : "2.8.5",
+            constraintVersion               : "1.1.3",
+            supportLibraryVersion           : "28.0.0",
+            multidexVersion                 : "1.0.2",
+            glideVersion                    : "4.9.0",
+//            glideTransformationVersion      : "4.x.x"
+    ]
+
+    dependencies = [
+            //support
+            "appcompat-v7"             : "com.android.support:appcompat-v7:${version["supportLibraryVersion"]}",
+            "constraint-layout"        : "com.android.support.constraint:constraint-layout:${version["constraintVersion"]}",
+            "support-v4"               : "com.android.support:support-v4:${version["supportLibraryVersion"]}",
+            "cardview-v7"              : "com.android.support:cardview-v7:${version["supportLibraryVersion"]}",
+            "annotations"              : "com.android.support:support-annotations:${version["supportLibraryVersion"]}",
+            "recyclerview-v7"          : "com.android.support:recyclerview-v7:${version["supportLibraryVersion"]}",
+            "multidex"                 : "com.android.support:multidex:${version["multidexVersion"]}",
+
+
+            "gson"                     : "com.google.code.gson:gson:${version["gsonVersion"]}",
+
+            //image
+            "glide"                    : "com.github.bumptech.glide:glide:${version["glideVersion"]}",
+            "glide-compiler"           : "com.github.bumptech.glide:compiler:${version["glideVersion"]}",
+            "glide-transformations"    : "jp.wasabeef:glide-transformations:3.3.0",
+
+            //router
+            "router"                      : "com.alibaba:arouter-api:1.4.1",
+            "router-compiler"             : "com.alibaba:arouter-compiler:1.2.2",
+
+            //tools
+            "utilcode"                  : "com.blankj:utilcode:1.12.5"
+
+    ]
+}
+
+
