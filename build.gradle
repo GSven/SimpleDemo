@@ -5,10 +5,16 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            name 'Google'
+            url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
+        }
+        maven { url 'https://jitpack.io' }
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0'
-
+        classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -19,6 +25,12 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            name 'Google'
+            url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
+        }
+        maven { url 'https://jitpack.io' }
+        mavenCentral()
     }
 }
 
@@ -46,6 +58,14 @@ ext {
             multidexVersion                 : "1.0.2",
             glideVersion                    : "4.9.0",
 //            glideTransformationVersion      : "4.x.x"
+            smartRefreshVersion             : "1.1.0-alpha-22",
+            retrofitSdkVersion              : "2.4.0",
+            okhttp                          : "3.14.1",
+            adapterHelperVersion            : "2.9.44",
+            imageSelectorVersion            : "0.5.1",
+            rxPermissionVersion             : "0.10.2",
+            butterknifeVersion              : "9.0.0"
+
     ]
 
     dependencies = [
@@ -57,6 +77,7 @@ ext {
             "annotations"              : "com.android.support:support-annotations:${version["supportLibraryVersion"]}",
             "recyclerview-v7"          : "com.android.support:recyclerview-v7:${version["supportLibraryVersion"]}",
             "multidex"                 : "com.android.support:multidex:${version["multidexVersion"]}",
+            "design"                   : "com.android.support:design:${version["supportLibraryVersion"]}",
 
 
             "gson"                     : "com.google.code.gson:gson:${version["gsonVersion"]}",
@@ -67,12 +88,41 @@ ext {
             "glide-transformations"    : "jp.wasabeef:glide-transformations:3.3.0",
 
             //router
-            "router"                      : "com.alibaba:arouter-api:1.4.1",
-            "router-compiler"             : "com.alibaba:arouter-compiler:1.2.2",
+            "router"                   : "com.alibaba:arouter-api:1.4.1",
+            "router-compiler"          : "com.alibaba:arouter-compiler:1.2.2",
 
             //tools
-            "utilcode"                  : "com.blankj:utilcode:1.12.5"
+            "utilcode"                 : "com.blankj:utilcode:1.12.5",
 
+            //SmartRefreshLayout
+            "SmartRefreshLayout"                  : "com.scwang.smartrefresh:SmartRefreshLayout:${version["smartRefreshVersion"]}",
+            "SmartRefreshHeader"                  : "com.scwang.smartrefresh:SmartRefreshHeader:${version["smartRefreshVersion"]}",//没有使用特殊Header，可以不加这行"
+
+
+            //network
+            "rxAndroid2"                        : "io.reactivex.rxjava2:rxandroid:2.1.1",
+            "rxJava2"                           : "io.reactivex.rxjava2:rxjava:2.1.11",
+            "retrofit"                          : "com.squareup.retrofit2:retrofit:${version["retrofitSdkVersion"]}",
+            "retrofit-converter-gson"           : "com.squareup.retrofit2:converter-gson:${version["retrofitSdkVersion"]}",
+            "retrofit-adapter-rxjava2"          : "com.squareup.retrofit2:adapter-rxjava2:${version["retrofitSdkVersion"]}",
+            "okhttp"                            : "com.squareup.okhttp3:okhttp:${version["okhttp"]}",
+            "logging-interceptor"               : "com.squareup.okhttp3:logging-interceptor:${version["okhttp"]}",
+            "rxrelay"                           : "com.jakewharton.rxrelay2:rxrelay:2.1.0",
+
+            //permission
+            "rxPermission"                      :"com.github.tbruyelle:rxpermissions:${version["rxPermissionVersion"]}",
+
+            //adapter
+            "adapterHelper"                     : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${version["adapterHelperVersion"]}",
+
+            //imageselector
+            imageSelector                       :"com.zhihu.android:matisse:${version["imageSelectorVersion"]}",
+
+            //butterknife
+            "butterknife"                       :"com.jakewharton:butterknife:${version["butterknifeVersion"]}",
+            "butterknife-compiler"              :"com.jakewharton:butterknife-compiler:${version["butterknifeVersion"]}",
+
+            "palette"                           :"com.android.support:palette-v7:${version["supportLibraryVersion"]}"
     ]
 }
 

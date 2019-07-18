@@ -239,8 +239,8 @@ public class ARouterUtils {
 
                 //无法找到路径，作替换处理
                 PathReplaceServiceImpl pathReplaceService = new PathReplaceServiceImpl();
-                pathReplaceService.replacePath(ARouterConstant.ACTIVITY_ANDROID_ACTIVITY
-                        , ARouterConstant.ACTIVITY_ANDROID_ACTIVITY);
+                pathReplaceService.replacePath(ARouterConstant.ACTIVITY_APP_ACTIVITY_MAIN
+                        , ARouterConstant.ACTIVITY_APP_ACTIVITY_MAIN);
             }
         };
         return callback;

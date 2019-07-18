@@ -22,7 +22,29 @@ public abstract class BaseActivity extends ABaseActivity {
                     true,
                     ContextCompat.getColor(this, R.color.white));
         }
+
+        setContentView(getContentView());
+        findViews();
+        initViews();
+        initData();
+        setListeners();
     }
+
+    /**
+     * 返回一个用于显示界面的布局id
+     *
+     * @return 视图id
+     */
+    public abstract int getContentView();
+
+    protected abstract void findViews();
+
+    protected abstract void initViews();
+
+    protected abstract void initData();
+
+    protected abstract void setListeners();
+
 
     /**
      * 设置全屏滑动渐变的时候用到，参考ThinkiveTool.execToolBarOperation(...)方法

@@ -1,6 +1,9 @@
 package com.gsven.library.utils;
 
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 
 import com.gsven.library.utils.enums.Direction;

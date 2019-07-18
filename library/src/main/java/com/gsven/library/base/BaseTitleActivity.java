@@ -22,7 +22,8 @@ import com.gsven.library.utils.TextSpanUtil;
 import com.gsven.library.utils.Toasty;
 import com.gsven.library.utils.enums.Direction;
 
-public class BaseTitleActivity extends ABaseActivity {
+public abstract class BaseTitleActivity extends ABaseActivity {
+    protected Context _mActivity;
     LinearLayout llRootView;//总布局
     Toolbar tb_base_invest;//标题栏总布局
     LinearLayout fl_tb_back;//返回按钮区域
@@ -41,7 +42,30 @@ public class BaseTitleActivity extends ABaseActivity {
         StatusBarUtil.setStatusBarMode(this, true, ContextCompat.getColor(this, R.color.white));
         getActivityNum();
         initTitleView();
+        _mActivity = this;
+        setContentView(getContentView());
+        findViews();
+        initViews();
+        initData();
+        setListeners();
     }
+
+
+    /**
+     * 返回一个用于显示界面的布局id
+     *
+     * @return 视图id
+     */
+    public abstract int getContentView();
+
+    protected abstract void findViews();
+
+    protected abstract void initViews();
+
+    protected abstract void initData();
+
+    protected abstract void setListeners();
+
 
     /**
      * 白色标题栏
@@ -130,7 +154,7 @@ public class BaseTitleActivity extends ABaseActivity {
         if (activityNum >= 3) {
             //添加一键返回操作
             if (tv_tb_back != null) {
-                TextSpanUtil.setTextDrawable(tv_tb_back, ContextCompat.getDrawable(this, R.mipmap.lib_back), Direction.LEFT);
+                TextSpanUtil.setTextDrawable(tv_tb_back, ContextCompat.getDrawable(this, R.mipmap.lib_toolbar_one_back), Direction.LEFT);
                 tv_tb_back.setWidth((int) ScreenUtil.dpToPx(this, 35));
                 tv_tb_back.setHeight((int) ScreenUtil.dpToPx(this, 35));
                 tv_tb_back.setOnClickListener(new View.OnClickListener() {

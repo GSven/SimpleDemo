@@ -2,11 +2,15 @@ package com.gsven.library.utils;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.v4.graphics.ColorUtils;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -20,6 +24,47 @@ import java.lang.reflect.Method;
  */
 
 public class StatusBarUtil {
+    public static final int MIN_API = 19;
+
+    /** 增加View的paddingTop,增加的值为状态栏高度 */
+    public static void setPadding(Context context, View view) {
+        if (Build.VERSION.SDK_INT >= MIN_API) {
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + getStatusBarHeight(context),
+                    view.getPaddingRight(), view.getPaddingBottom());
+        }
+    }
+    /** 增加View的paddingTop,增加的值为状态栏高度 (智能判断，并设置高度)*/
+    public static void setPaddingSmart(Context context, View view) {
+        if (Build.VERSION.SDK_INT >= MIN_API) {
+            ViewGroup.LayoutParams lp = view.getLayoutParams();
+            if (lp != null && lp.height > 0) {
+                lp.height += getStatusBarHeight(context);//增高
+            }
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + getStatusBarHeight(context),
+                    view.getPaddingRight(), view.getPaddingBottom());
+        }
+    }
+
+    /** 增加View的高度以及paddingTop,增加的值为状态栏高度.一般是在沉浸式全屏给ToolBar用的 */
+    public static void setHeightAndPadding(Context context, View view) {
+        if (Build.VERSION.SDK_INT >= MIN_API) {
+            ViewGroup.LayoutParams lp = view.getLayoutParams();
+            lp.height += getStatusBarHeight(context);//增高
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop() + getStatusBarHeight(context),
+                    view.getPaddingRight(), view.getPaddingBottom());
+        }
+    }
+    /** 增加View上边距（MarginTop）一般是给高度为 WARP_CONTENT 的小控件用的*/
+    public static void setMargin(Context context, View view) {
+        if (Build.VERSION.SDK_INT >= MIN_API) {
+            ViewGroup.LayoutParams lp = view.getLayoutParams();
+            if (lp instanceof ViewGroup.MarginLayoutParams) {
+                ((ViewGroup.MarginLayoutParams) lp).topMargin += getStatusBarHeight(context);//增高
+            }
+            view.setLayoutParams(lp);
+        }
+    }
+
     /**
      * 设置状态栏为透明
      *
@@ -286,4 +331,16 @@ public class StatusBarUtil {
         return ColorUtils.calculateLuminance(color) >= 0.5;
     }
 
+    /** 获取状态栏高度 */
+    public static int getStatusBarHeight(Context context) {
+        int result = 24;
+        int resId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resId > 0) {
+            result = context.getResources().getDimensionPixelSize(resId);
+        } else {
+            result = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                    result, Resources.getSystem().getDisplayMetrics());
+        }
+        return result;
+    }
 }

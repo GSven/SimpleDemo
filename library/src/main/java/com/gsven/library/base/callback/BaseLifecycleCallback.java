@@ -38,38 +38,38 @@ public class BaseLifecycleCallback implements Application.ActivityLifecycleCallb
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        KLog.e("Activity生命周期","onActivityCreated");
+        KLog.d("Activity生命周期","onActivityCreated");
         AppManager.getAppManager().addActivity(activity);
     }
 
     @Override
     public void onActivityStarted(Activity activity) {
-        KLog.e("Activity生命周期","onActivityStarted");
+        KLog.d("Activity生命周期","onActivityStarted");
     }
 
     @Override
     public void onActivityResumed(Activity activity) {
-        KLog.e("Activity生命周期","onActivityResumed");
+        KLog.d("Activity生命周期","onActivityResumed");
     }
 
     @Override
     public void onActivityPaused(Activity activity) {
-        KLog.e("Activity生命周期","onActivityPaused");
+        KLog.d("Activity生命周期","onActivityPaused");
     }
 
     @Override
     public void onActivityStopped(Activity activity) {
-        KLog.e("Activity生命周期","onActivityStopped");
+        KLog.d("Activity生命周期","onActivityStopped");
     }
 
     @Override
     public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-        KLog.e("Activity生命周期","onActivitySaveInstanceState");
+        KLog.d("Activity生命周期","onActivitySaveInstanceState");
     }
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-        KLog.e("Activity生命周期","onActivityDestroyed");
+        KLog.d("Activity生命周期","onActivityDestroyed");
         //将当前Activity移除到容器
         AppManager.getAppManager().removeActivity(activity);
     }

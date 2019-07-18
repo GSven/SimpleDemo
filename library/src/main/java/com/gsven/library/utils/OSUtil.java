@@ -106,7 +106,7 @@ public class OSUtil {
                 properties.load(new FileInputStream(new File(Environment.getRootDirectory(), "build" +
                         ".prop")));
             } catch (Exception e) {
-                KLog.e(e);
+                KLog.d(e);
             }
         }
 

@@ -9,6 +9,14 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
+        multiDexEnabled true
+
+        //Arouter每个模块都需要
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -38,4 +46,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':library')
+    //模块需要用到Arouter的都需要配置
+    annotationProcessor rootProject.ext.dependencies["router-compiler"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+
 }
